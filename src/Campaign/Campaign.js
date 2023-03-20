@@ -1,0 +1,45 @@
+import React, { useState } from "react";
+import styles from "./campaign.scss";
+import CampaignList from "./CampaignList";
+
+export const Campaign = ({
+  campCreateBtnName,
+  handleCreateCamp,
+  filterOption,
+  campaignList,
+}) => {
+  const [isActive, setIsActive] = useState("active");
+
+  const handleTabChange = (type) => {
+    setIsActive(type);
+  };
+
+  return (
+    <div className={styles.camp_main_container}>
+      {/* Create React Campaign Library Example 😄 */}
+      <button className={styles.camp_create_btn} onClick={handleCreateCamp}>
+        {campCreateBtnName}
+      </button>
+      <hr className={styles.camp_devider} />
+      <div className={styles.camp_filter_options}>
+        {filterOption &&
+          filterOption?.map((item, i) => {
+            return (
+              <button
+                key={i}
+                className={
+                  item?.value === isActive
+                    ? styles.camp_filter_btn
+                    : styles.camp_filter_btn + " " + styles.active
+                }
+                onClick={() => handleTabChange(item?.value)}
+              >
+                {item?.name}
+              </button>
+            );
+          })}
+      </div>
+      <CampaignList campaignList={campaignList} />
+    </div>
+  );
+};
