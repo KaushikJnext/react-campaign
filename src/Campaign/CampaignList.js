@@ -71,9 +71,8 @@ const CampaignList = ({ campaignList }) => {
             {item?.status === "suspended" && (
               <div className={styles.adv_suspended_content}>
                 {/* <AlertIcon /> */}
-                <p variant="h6" className={styles.adv_suspended_content_text}>
-                  suspended_declined_desc
-                  <a href="#">update_card_click_hear</a>
+                <p className={styles.adv_suspended_content_text}>
+                  suspended_declined_desc <a href="#"> Click hear</a>
                 </p>
               </div>
             )}

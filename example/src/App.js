@@ -16,7 +16,7 @@ const App = () => {
         adv_title: "test status",
         adv_url: "https://google.com",
         created: "2023-02-28T06:24:00.000Z",
-        status: "active",
+        status: "suspended",
         is_approved: 1,
         timezone: null,
       },
