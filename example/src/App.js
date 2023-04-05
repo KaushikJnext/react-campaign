@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import { Campaign } from "react-campaign";
 import "react-campaign/dist/index.css";
 
+import advImg from "../src/assets/images/demo.jpg";
+
 const App = () => {
   const [campaignList, setCampaignList] = useState([]);
 
@@ -10,8 +12,7 @@ const App = () => {
     setCampaignList([
       {
         _id: 20,
-        adv_image:
-          "https://staging.sezzyou.com/api/v1/public/user/files/redirect/3OHJ4-1677565357474.png",
+        adv_image: advImg,
         adv_text: "test status for adv",
         adv_title: "test status",
         adv_url: "https://google.com",
@@ -22,8 +23,7 @@ const App = () => {
       },
       {
         _id: 34,
-        adv_image:
-          "https://staging.sezzyou.com/api/v1/public/user/files/redirect/0LMpv-1677821875603.png",
+        adv_image: advImg,
         adv_text:
           "New Campaign 15/03/23 11:30 AM Start and Campaign 30/03/23 05:30 PM End Date",
         adv_title: "Scheduled Campaign Start and End Date",
@@ -35,8 +35,7 @@ const App = () => {
       },
       {
         _id: 35,
-        adv_image:
-          "https://staging.sezzyou.com/api/v1/public/user/files/redirect/CRMYV-1677822521267.png",
+        adv_image: advImg,
         adv_text:
           "campaign Immediately, once approved with Continuous until cancelled or Maximum Campaign Spend reached",
         adv_title: "Immediately Campaign",
@@ -48,8 +47,7 @@ const App = () => {
       },
       {
         _id: 45,
-        adv_image:
-          "https://staging.sezzyou.com/api/v1/public/user/files/redirect/OWHEs-1678258535166.png",
+        adv_image: advImg,
         adv_text: "create new adv schedule text",
         adv_title: "create new adv schedule",
         adv_url: "https://www.google.com",
@@ -60,8 +58,7 @@ const App = () => {
       },
       {
         _id: 56,
-        adv_image:
-          "https://staging.sezzyou.com/api/v1/public/user/files/redirect/E9Gj3-1678425941513.png",
+        adv_image: advImg,
         adv_text: "Test Timezone text",
         adv_title: "Test Timezone Title",
         adv_url: "https://www.google.com",
@@ -72,8 +69,7 @@ const App = () => {
       },
       {
         _id: 59,
-        adv_image:
-          "https://staging.sezzyou.com/api/v1/public/user/files/redirect/Mn1L0-1678681544578.png",
+        adv_image: advImg,
         adv_text: "13/03/23 adv current Text",
         adv_title: "13/03/23 adv current",
         adv_url: "https://www.google.com",
@@ -84,8 +80,7 @@ const App = () => {
       },
       {
         _id: 60,
-        adv_image:
-          "https://staging.sezzyou.com/api/v1/public/user/files/redirect/hZ1Dk-1678681704470.png",
+        adv_image: advImg,
         adv_text: "13/03/23 adv add scheduled for 14/03/23",
         adv_title: "14/03/23 adv scheduled",
         adv_url: "https://www.google.com",

@@ -1,4 +1,4 @@
-<!-- # react-campaign
+# react-campaign
 
 > React Campaign for react module
 
@@ -15,20 +15,21 @@ npm install --save react-campaign
 ```jsx
 import React, { Component } from 'react'
 
-import MyComponent from 'react-campaign'
+import { Campaign } from "react-campaign";
 import 'react-campaign/dist/index.css'
 
 class Example extends Component {
   render() {
-    return <MyComponent />
+    return <Campaign />
   }
 }
 ```
-
+> Props
+* campCreateBtnName : add your create button name
+* handleCreateCamp: redirect create account screen routes set
+* filterOption: add your tab filter option
+* campaignList: campaign data list
 ## License
 
-MIT © [KaushikJnext](https://github.com/KaushikJnext) -->
-# In Progress
-# react-campaign
+MIT © [KaushikJnext](https://github.com/KaushikJnext)
 
-In Progress

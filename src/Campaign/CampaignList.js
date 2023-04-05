@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "./campaign.scss";
-
+import moment from "moment";
 const CampaignList = ({ campaignList }) => {
   return (
     <div>
@@ -24,8 +24,7 @@ const CampaignList = ({ campaignList }) => {
 
               <div className={styles.adv_campaign_date}>
                 <p>
-                  {/* {moment.utc(item?.created).local().format("DD MMMM YYYY")} */}
-                  {item?.created}
+                  {moment.utc(item?.created).local().format("DD MMMM YYYY")}
                 </p>
               </div>
               <div className={styles.adv_campaign_status}>
@@ -72,7 +71,8 @@ const CampaignList = ({ campaignList }) => {
               <div className={styles.adv_suspended_content}>
                 {/* <AlertIcon /> */}
                 <p className={styles.adv_suspended_content_text}>
-                  suspended_declined_desc <a href="#"> Click hear</a>
+                  Campaign suspended due to declined payment{" "}
+                  <a href="#"> Click here to update credit card information.</a>
                 </p>
               </div>
             )}
