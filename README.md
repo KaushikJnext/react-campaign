@@ -32,4 +32,3 @@ class Example extends Component {
 ## License
 
 MIT © [KaushikJnext](https://github.com/KaushikJnext)
-
