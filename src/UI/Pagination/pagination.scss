@@ -1,0 +1,18 @@
+.pagination {
+  //   margin: 50px;
+  display: flex;
+  align-items: center;
+  padding-left: 0;
+  .page_item {
+    list-style-type: none;
+    margin-right: 5px;
+    padding: 5px 10px;
+    background: #4582c3;
+    color: #ffffff;
+    border-radius: 5px;
+  }
+  .page_link {
+    text-decoration: none;
+    color: #ffffff;
+  }
+}

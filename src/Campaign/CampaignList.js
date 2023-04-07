@@ -1,7 +1,20 @@
 import React, { useState } from "react";
 import styles from "./campaign.scss";
 import moment from "moment";
+import Pagination from "../UI/Pagination/pagination";
+
 const CampaignList = ({ campaignList }) => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(2);
+
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = campaignList.slice(indexOfFirstItem, indexOfLastItem);
+
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
   return (
     <div>
       {campaignList &&
@@ -47,9 +60,9 @@ const CampaignList = ({ campaignList }) => {
                   }
                 >
                   {item?.status === "active"
-                    ? "Approved Running"
+                    ? "Running"
                     : item?.status === "scheduled"
-                    ? "Approved Scheduled"
+                    ? "Scheduled"
                     : item?.status === "admin_suspended"
                     ? "Suspended"
                     : item?.status}
@@ -57,13 +70,13 @@ const CampaignList = ({ campaignList }) => {
               </div>
               <div className={styles.adv_campaign_action}>
                 <p
-                  className={styles.adv_campaign_action_btn}
+                  className={styles.adv_campaign_view_btn}
                   //   onClick={() =>
                   //     navigate(`/sezzyou/adv/campaign/summary/${item?._id}`)
                   //   }
                 >
                   {/* <ViewIcon /> */}
-                  <span className="color_blue">view</span>
+                  <span className={styles.color_blue}>view</span>
                 </p>
               </div>
             </div>
@@ -79,6 +92,13 @@ const CampaignList = ({ campaignList }) => {
             <hr className={styles.adv_campaign_list_divider} />
           </div>
         ))}
+      {
+        <Pagination
+          itemsPerPage={itemsPerPage}
+          totalItems={campaignList.length}
+          paginate={paginate}
+        />
+      }
       {campaignList?.length === 0 && (
         <div className={styles.not_found}>
           <p>No Campaign</p>

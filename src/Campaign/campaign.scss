@@ -1,5 +1,14 @@
+body {
+  p {
+    margin: 0;
+  }
+  .color_blue {
+    color: #4582c3;
+  }
+}
 .camp_main_container {
   margin: 18px;
+  font-family: "Roboto", sans-serif;
   // padding: 10px;
   // border: 2px solid #000;
   // font-size: 15px;
@@ -63,6 +72,7 @@
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
+  padding: 0 10px;
   @media (max-width: 768px) {
     display: block;
   }
@@ -87,7 +97,6 @@
       overflow: hidden;
       text-overflow: ellipsis;
       word-break: break-word;
-      font-weight: 500;
       @media (max-width: 768px) {
         width: 100%;
         margin-left: 0;
@@ -101,14 +110,13 @@
     }
   }
   .adv_campaign_date {
-    color: #c7c7c7;
+    color: gray;
   }
   .adv_campaign_action {
-    .adv_campaign_action_btn {
+    .adv_campaign_view_btn {
       display: flex;
       justify-content: center;
       align-items: center;
-      font-weight: 500;
       cursor: pointer;
       span {
         margin-left: 6px;
@@ -194,11 +202,56 @@
   }
 }
 .adv_campaign_list_divider {
-  background: #d4d6d8;
+  background: #000000;
   margin: 18px 0;
 }
 .not_found {
   text-align: center;
   color: #000000;
   padding: 20px;
+}
+.create_camp_main_container {
+  background: #ffffff;
+  padding: 18px;
+  border-radius: 5px;
+  border: 1px solid #000000;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+  margin: 18px;
+  .create_camp_title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #000000;
+  }
+  .create_camp_sub_title {
+    font-size: 16px;
+    font-weight: 600;
+    color: gray;
+    margin-top: 30px;
+  }
+  .cmap_input_label {
+    margin-bottom: 4px;
+    width: 100%;
+  }
+  .cmap_input_field {
+    margin: 18px 0;
+    display: grid;
+  }
+  .custom_field {
+    border: 1px solid black;
+    width: -webkit-fill-available;
+    height: 43px;
+    border-radius: 5px;
+    margin-top: 5px;
+    padding: 0 10px;
+  }
+  .camp_submit_btn {
+    height: 45px;
+    padding: 10px;
+    background: #4582c2;
+    border-radius: 5px;
+    border: 1px solid #ffffff;
+    font-size: 16px;
+    color: #ffffff;
+    margin-top: 18px;
+  }
 }
