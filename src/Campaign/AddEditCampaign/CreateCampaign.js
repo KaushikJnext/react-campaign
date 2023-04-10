@@ -1,5 +1,11 @@
 import React, { useState } from "react";
 import styles from "../campaign.scss";
+import TextInput from "../../UI/InputFields/TextInput";
+import TextArea from "../../UI/InputFields/TextArea";
+import SelectInput from "../../UI/InputFields/SelectInput";
+import ImageInput from "../../UI/InputFields/ImageInput";
+import RadioInput from "../../UI/InputFields/RadioInput";
+import CheckBoxInput from "../../UI/InputFields/CheckBoxInput";
 
 export const CreateCampaign = ({
   createCampTitle,
@@ -9,132 +15,152 @@ export const CreateCampaign = ({
 }) => {
   console.log("fields", fields);
   const [fieldValue, setFiledValue] = useState({});
+  const [previewMedia, setPreviewMedia] = useState("");
+
   const handleChange = (e) => {
-    const { name, value, type } = e.target;
-    setFiledValue({ ...fieldValue, [name]: value });
-    console.log("hello", name, value);
+    const { name, value, type, checked, files } = e.target;
+    let values =
+      type === "checkbox" ? checked : type === "file" ? files : value;
+    setFiledValue({ ...fieldValue, [name]: values });
+    if (type === "file") {
+      setPreviewMedia(files);
+    }
   };
+
+  const handleMultipleOptionChange = (e) => {
+    const { name } = e.target;
+    const options = e.target.options;
+    const selectedValues = [];
+    for (let i = 0; i < options.length; i++) {
+      if (options[i].selected) {
+        selectedValues.push(options[i].value);
+      }
+    }
+    setFiledValue({ ...fieldValue, [name]: selectedValues });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("fieldValue1", fieldValue);
+  };
+  console.log("fieldValue0", fieldValue);
+
   return (
-    <div className={styles.create_camp_main_container}>
+    <div className={styles.create_camp_main_container + " " + className}>
       {/* Create React Campaign Library Example 😄 */}
       <p className={styles.create_camp_title}>{createCampTitle}</p>
 
       {/* <p className={styles.create_camp_sub_title}>
         Campaign Display and Linking
       </p> */}
-      <form>
+      <form onSubmit={handleSubmit}>
         {fields?.map((item) => {
           return (
             <div key={item?.id}>
-              <div>
+              <div className={styles.create_camp_header}>
                 <p className={styles.create_camp_sub_title}>{item?.title}</p>
+                {item?.link && (
+                  <a href="#" className={styles.create_camp_sub_title_link}>
+                    {item?.link}
+                  </a>
+                )}
               </div>
-
               {item?.inputField?.map((field, i) => {
-                let campName = field?.name;
                 return (
-                  <div key={i} className={styles.cmap_input_field}>
-                    <label
-                      className={styles.cmap_input_label}
-                      htmlFor={field && field?.for ? field?.for : ""}
-                    >
-                      {field?.name}
-                    </label>
-
+                  <div key={i} className={styles.camp_input_field}>
                     {field?.inputType === "input" ? (
-                      <input
-                        className={styles.custom_field}
-                        name={field && field?.name ? campName : ""}
-                        type={field && field?.type ? field?.type : ""}
-                        value={fieldValue ? fieldValue?.campName : ""}
-                        readOnly={
-                          field && field?.readonly ? field?.readonly : false
-                        }
-                        disabled={
-                          field && field?.disabled ? field?.disabled : false
-                        }
-                        size={field && field?.size ? field?.size : ""}
-                        maxLength={
-                          field && field?.maxlength ? field?.maxlength : null
-                        }
-                        min={field && field?.min ? field?.min : null}
-                        max={field && field?.max ? field?.max : null}
-                        multiple={
-                          field && field?.multiple ? field?.multiple : ""
-                        }
-                        pattern={
-                          field && field?.pattern ? field?.pattern : null
-                        }
-                        placeholder={
-                          field && field?.placeholder ? field?.placeholder : ""
-                        }
-                        required={
-                          field && field?.required ? field?.required : false
-                        }
-                        step={field && field?.step ? field?.step : null}
-                        autoFocus={
-                          field && field?.autofocus ? field?.autofocus : ""
-                        }
-                        height={field && field?.height ? field?.height : null}
-                        width={field && field?.width ? field?.width : null}
-                        autoComplete={
-                          field && field?.autocomplete
-                            ? field?.autocomplete
-                            : null
-                        }
+                      <TextInput
+                        field={field}
+                        value={fieldValue ? fieldValue : ""}
                         onChange={(e) => handleChange(e)}
+                        disabled={
+                          fieldValue[field?.relation] === true
+                            ? true
+                            : field?.disabled
+                        }
                       />
                     ) : field?.inputType === "textarea" ? (
-                      <textarea
-                        className={styles.custom_field}
-                        name={field && field?.name ? campName : ""}
-                        type={field && field?.type ? field?.type : ""}
-                        value={fieldValue ? fieldValue?.campName : ""}
-                        readOnly={
-                          field && field?.readonly ? field?.readonly : false
+                      <TextArea
+                        field={field}
+                        value={fieldValue ? fieldValue : ""}
+                        onChange={(e) => handleChange(e)}
+                        disabled={
+                          fieldValue[field?.relation] === true
+                            ? true
+                            : field?.disabled
+                        }
+                      />
+                    ) : field?.inputType === "select" ? (
+                      <SelectInput
+                        field={field}
+                        value={fieldValue ? fieldValue : ""}
+                        onChange={(e) =>
+                          field?.multiple
+                            ? handleMultipleOptionChange(e)
+                            : handleChange(e)
                         }
                         disabled={
-                          field && field?.disabled ? field?.disabled : false
+                          fieldValue[field?.relation] === true
+                            ? true
+                            : field?.disabled
                         }
-                        size={field && field?.size ? field?.size : ""}
-                        maxLength={
-                          field && field?.maxlength ? field?.maxlength : null
-                        }
-                        min={field && field?.min ? field?.min : null}
-                        max={field && field?.max ? field?.max : null}
-                        multiple={
-                          field && field?.multiple ? field?.multiple : ""
-                        }
-                        pattern={
-                          field && field?.pattern ? field?.pattern : null
-                        }
-                        placeholder={
-                          field && field?.placeholder ? field?.placeholder : ""
-                        }
-                        required={
-                          field && field?.required ? field?.required : false
-                        }
-                        step={field && field?.step ? field?.step : null}
-                        autoFocus={
-                          field && field?.autofocus ? field?.autofocus : ""
-                        }
-                        height={field && field?.height ? field?.height : null}
-                        width={field && field?.width ? field?.width : null}
-                        autoComplete={
-                          field && field?.autocomplete
-                            ? field?.autocomplete
-                            : null
-                        }
-                        rows={field && field?.rows ? field?.rows : "5"}
-                        cols={field && field?.cols ? field?.cols : ""}
-                        onChange={(e) => handleChange(e)}
                       />
+                    ) : field?.inputType === "image" ? (
+                      <ImageInput
+                        field={field}
+                        onChange={(e) => handleChange(e)}
+                        disabled={
+                          fieldValue[field?.relation] === true
+                            ? true
+                            : field?.disabled
+                        }
+                        previewMedia={previewMedia}
+                        setPreviewMedia={setPreviewMedia}
+                      />
+                    ) : field?.inputType === "radio" ? (
+                      <RadioInput
+                        field={field}
+                        value={fieldValue ? fieldValue : ""}
+                        onChange={(e) => handleChange(e)}
+                        disabled={
+                          fieldValue[field?.relation] === true
+                            ? true
+                            : field?.disabled
+                        }
+                      />
+                    ) : field?.inputType === "checkbox" ? (
+                      <CheckBoxInput
+                        field={field}
+                        value={fieldValue ? fieldValue : ""}
+                        onChange={(e) => handleChange(e)}
+                        disabled={
+                          fieldValue[field?.relation] === true
+                            ? true
+                            : field?.disabled
+                        }
+                      />
+                    ) : field?.inputType === "static_content" ? (
+                      field?.content?.map((obj, i) => {
+                        return (
+                          <div key={i} className={styles.camp_static_info}>
+                            <span>&#9432;</span>
+                            <p className={styles.camp_static_info_text}>
+                              {obj?.info}
+                            </p>
+                          </div>
+                        );
+                      })
+                    ) : field?.inputType === "policy_content" ? (
+                      <div className={styles.camp_policy_content}>
+                        {field?.content}
+                      </div>
                     ) : (
                       ""
                     )}
                   </div>
                 );
               })}
+              <hr className={styles.camp_create_divider} />
             </div>
           );
         })}

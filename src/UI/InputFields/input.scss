@@ -1,0 +1,66 @@
+.camp_input_label {
+  display: block;
+  margin-bottom: 4px;
+  width: 100%;
+  font-weight: 500;
+}
+
+.custom_field {
+  border: 1px solid black;
+  width: -webkit-fill-available;
+  height: 23px;
+  border-radius: 5px;
+  margin-top: 5px;
+  padding: 10px;
+}
+.custom_textarea_field {
+  border: 1px solid black;
+  width: -webkit-fill-available;
+  height: auto;
+  border-radius: 5px;
+  margin-top: 5px;
+  padding: 10px;
+}
+.custom_select_field {
+  border: 1px solid black;
+  width: -webkit-fill-available;
+  min-height: 45px;
+  height: auto;
+  border-radius: 5px;
+  margin-top: 5px;
+  padding: 10px;
+}
+.custom_file_field {
+  // border: 1px solid black;
+  width: -webkit-fill-available;
+  // min-height: 45px;
+  // height: auto;
+  // border-radius: 5px;
+  margin-top: 5px;
+  // padding: 10px;
+}
+.camp_radio_content {
+  display: flex;
+}
+.color_red {
+  color: red;
+}
+.camp_prev_media_content {
+  position: relative;
+  .camp_prev_media_delete {
+    position: absolute;
+    background: gray;
+    color: white;
+    border-radius: 50%;
+    top: -5px;
+    left: -5px;
+    cursor: pointer;
+  }
+  .camp_prev_media {
+    img {
+      height: 63px;
+      width: 63px;
+      object-fit: cover;
+    }
+  }
+}
