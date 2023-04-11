@@ -15,6 +15,7 @@ export const userRoutes = [
       { path: "/", element: <Navigate to="/campaign" /> },
       { path: "/campaign", element: <Campaigns /> },
       { path: "/campaign/create", element: <CampaignCreate /> },
+      { path: "/campaign/view/:id", element: <CampaignCreate /> },
       { path: "/campaign/summary/:id", element: <CampaignSummary /> },
       { path: "/campaign/payment", element: <CampaignPayment /> },
       { path: "*", element: <Navigate to="/campaign" /> },

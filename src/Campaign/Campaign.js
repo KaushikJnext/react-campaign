@@ -11,6 +11,7 @@ export const Campaign = ({
   suspendedInfo,
   handleTabChange,
   isActive,
+  className,
 }) => {
   // const [isActive, setIsActive] = useState("active");
 
@@ -19,7 +20,7 @@ export const Campaign = ({
   // };
 
   return (
-    <div className={styles.camp_main_container}>
+    <div className={styles.camp_main_container + " " + className}>
       {/* Create React Campaign Library Example 😄 */}
       {campCreateBtnName && (
         <React.Fragment>

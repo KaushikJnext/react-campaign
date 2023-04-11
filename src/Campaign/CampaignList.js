@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "./campaign.scss";
 import moment from "moment";
-import Pagination from "../UI/Pagination/Pagination";
+// import Pagination from "../UI/Pagination/Pagination";
 
 const CampaignList = ({ campaignList, summaryNavigate, suspendedInfo }) => {
   // const [currentPage, setCurrentPage] = useState(1);
@@ -58,7 +58,7 @@ const CampaignList = ({ campaignList, summaryNavigate, suspendedInfo }) => {
                   }
                 >
                   {item?.status === "active"
-                    ? "Running"
+                    ? "Active"
                     : item?.status === "scheduled"
                     ? "Scheduled"
                     : item?.status === "admin_suspended"
