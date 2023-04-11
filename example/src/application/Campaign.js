@@ -8,7 +8,9 @@ import { useNavigate } from "react-router-dom";
 
 const Campaigns = () => {
   const [campaignList, setCampaignList] = useState([]);
+  const [isActive, setIsActive] = useState("active");
   const navigate = useNavigate();
+
   useEffect(() => {
     setCampaignList([
       {
@@ -96,7 +98,15 @@ const Campaigns = () => {
   const handleCreateCamp = () => {
     navigate("/campaign/create");
   };
+  const viewCampSummary = (item) => {
+    navigate(`/campaign/summary/${item?._id}`);
+  };
 
+  const handleTabChange = (type) => {
+    setIsActive(type);
+    // console.log("type", type);
+  };
+  const suspendedInfo = `Campaign suspended due to declined payment <a href='/campaign/payment'>Click here to update credit card information.</a>`;
   const filterOption = [
     {
       id: 1,
@@ -131,6 +141,10 @@ const Campaigns = () => {
       handleCreateCamp={handleCreateCamp}
       filterOption={filterOption}
       campaignList={campaignList}
+      summaryNavigate={viewCampSummary}
+      suspendedInfo={suspendedInfo}
+      handleTabChange={handleTabChange}
+      isActive={isActive}
     />
   );
 };

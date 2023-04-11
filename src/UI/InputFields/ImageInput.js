@@ -9,7 +9,7 @@ const ImageInput = ({
   setPreviewMedia,
 }) => {
   const { inputType, label, relation, ...rest } = field;
-  console.log("imageInput", field, previewMedia[0]);
+  // console.log("imageInput", field, previewMedia[0]);
   // URL.createObjectURL(previewMedia[0])
   const deletePreviewMedia = () => {
     setPreviewMedia("");

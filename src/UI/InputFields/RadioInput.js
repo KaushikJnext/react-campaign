@@ -3,7 +3,7 @@ import styles from "./input.scss";
 
 const RadioInput = ({ field, value, disabled, onChange }) => {
   const { inputType, label, options, or, relation, ...rest } = field;
-  console.log("radioInput", field, value);
+  // console.log("radioInput", field, value);
 
   return (
     <React.Fragment>

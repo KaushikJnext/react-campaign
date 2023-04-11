@@ -1,19 +1,19 @@
 import React, { useState } from "react";
 import styles from "./campaign.scss";
 import moment from "moment";
-import Pagination from "../UI/Pagination/pagination";
+import Pagination from "../UI/Pagination/Pagination";
 
-const CampaignList = ({ campaignList }) => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(2);
+const CampaignList = ({ campaignList, summaryNavigate, suspendedInfo }) => {
+  // const [currentPage, setCurrentPage] = useState(1);
+  // const [itemsPerPage, setItemsPerPage] = useState(2);
 
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = campaignList.slice(indexOfFirstItem, indexOfLastItem);
+  // const indexOfLastItem = currentPage * itemsPerPage;
+  // const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  // const currentItems = campaignList.slice(indexOfFirstItem, indexOfLastItem);
 
-  const paginate = (pageNumber) => {
-    setCurrentPage(pageNumber);
-  };
+  // const paginate = (pageNumber) => {
+  //   setCurrentPage(pageNumber);
+  // };
 
   return (
     <div>
@@ -22,9 +22,7 @@ const CampaignList = ({ campaignList }) => {
           <div key={i}>
             <div
               className={styles.adv_campaign_list}
-              //   onClick={() =>
-              //     navigate(`/sezzyou/adv/campaign/summary/${item?._id}`)
-              //   }
+              onClick={() => summaryNavigate(item)}
             >
               <div className={styles.adv_campaign_img_name}>
                 <div className={styles.adv_campaign_img}>
@@ -71,9 +69,7 @@ const CampaignList = ({ campaignList }) => {
               <div className={styles.adv_campaign_action}>
                 <p
                   className={styles.adv_campaign_view_btn}
-                  //   onClick={() =>
-                  //     navigate(`/sezzyou/adv/campaign/summary/${item?._id}`)
-                  //   }
+                  onClick={() => summaryNavigate(item)}
                 >
                   {/* <ViewIcon /> */}
                   <span className={styles.color_blue}>view</span>
@@ -83,22 +79,25 @@ const CampaignList = ({ campaignList }) => {
             {item?.status === "suspended" && (
               <div className={styles.adv_suspended_content}>
                 {/* <AlertIcon /> */}
-                <p className={styles.adv_suspended_content_text}>
-                  Campaign suspended due to declined payment{" "}
-                  <a href="#"> Click here to update credit card information.</a>
-                </p>
+                <p
+                  dangerouslySetInnerHTML={{
+                    __html: suspendedInfo,
+                  }}
+                  className={styles.adv_suspended_content_text}
+                />
               </div>
             )}
             <hr className={styles.adv_campaign_list_divider} />
           </div>
         ))}
-      {
+      {/* {
         <Pagination
           itemsPerPage={itemsPerPage}
           totalItems={campaignList.length}
           paginate={paginate}
+          currentPage={currentPage}
         />
-      }
+      } */}
       {campaignList?.length === 0 && (
         <div className={styles.not_found}>
           <p>No Campaign</p>

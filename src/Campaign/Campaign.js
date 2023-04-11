@@ -7,12 +7,16 @@ export const Campaign = ({
   handleCreateCamp,
   filterOption,
   campaignList,
+  summaryNavigate,
+  suspendedInfo,
+  handleTabChange,
+  isActive,
 }) => {
-  const [isActive, setIsActive] = useState("active");
+  // const [isActive, setIsActive] = useState("active");
 
-  const handleTabChange = (type) => {
-    setIsActive(type);
-  };
+  // const handleTabChange = (type) => {
+  //   setIsActive(type);
+  // };
 
   return (
     <div className={styles.camp_main_container}>
@@ -39,7 +43,11 @@ export const Campaign = ({
             );
           })}
       </div>
-      <CampaignList campaignList={campaignList} />
+      <CampaignList
+        campaignList={campaignList}
+        summaryNavigate={summaryNavigate}
+        suspendedInfo={suspendedInfo}
+      />
     </div>
   );
 };

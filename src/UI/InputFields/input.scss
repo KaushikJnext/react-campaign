@@ -45,8 +45,14 @@
 .color_red {
   color: red;
 }
+.field_required_msg {
+  color: red;
+  font-size: 12px;
+  margin: 5px 0;
+}
 .camp_prev_media_content {
   position: relative;
+  margin-top: 10px;
   .camp_prev_media_delete {
     position: absolute;
     background: gray;

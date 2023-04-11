@@ -12,15 +12,16 @@ export const CreateCampaign = ({
   fields,
   submitCampBtn,
   className,
+  handleSubmit,
 }) => {
-  console.log("fields", fields);
+  // console.log("fields", fields);
   const [fieldValue, setFiledValue] = useState({});
   const [previewMedia, setPreviewMedia] = useState("");
 
   const handleChange = (e) => {
     const { name, value, type, checked, files } = e.target;
     let values =
-      type === "checkbox" ? checked : type === "file" ? files : value;
+      type === "checkbox" ? checked : type === "file" ? files[0] : value;
     setFiledValue({ ...fieldValue, [name]: values });
     if (type === "file") {
       setPreviewMedia(files);
@@ -39,12 +40,6 @@ export const CreateCampaign = ({
     setFiledValue({ ...fieldValue, [name]: selectedValues });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("fieldValue1", fieldValue);
-  };
-  console.log("fieldValue0", fieldValue);
-
   return (
     <div className={styles.create_camp_main_container + " " + className}>
       {/* Create React Campaign Library Example 😄 */}
@@ -53,7 +48,7 @@ export const CreateCampaign = ({
       {/* <p className={styles.create_camp_sub_title}>
         Campaign Display and Linking
       </p> */}
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={(e) => handleSubmit(e, fieldValue)}>
         {fields?.map((item) => {
           return (
             <div key={item?.id}>
