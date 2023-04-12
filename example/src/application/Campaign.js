@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 
-import { Campaign } from "react-campaign";
-import "react-campaign/dist/index.css";
-
 import advImg from "../../src/assets/images/demo.jpg";
 import { useNavigate } from "react-router-dom";
+import OtherContent from "./OtherContent";
+
+import { Campaign } from "react-campaign";
+import "react-campaign/dist/index.css";
 
 const Campaigns = () => {
   const [campaignList, setCampaignList] = useState([]);
@@ -13,63 +14,6 @@ const Campaigns = () => {
 
   useEffect(() => {
     setCampaignList([
-      {
-        _id: 20,
-        adv_image: advImg,
-        adv_text: "test status for adv",
-        adv_title: "Test status",
-        adv_url: "https://google.com",
-        created: "2023-02-28T06:24:00.000Z",
-        status: "suspended",
-        is_approved: 1,
-        timezone: null,
-      },
-      {
-        _id: 34,
-        adv_image: advImg,
-        adv_text:
-          "New Campaign 15/03/23 11:30 AM Start and Campaign 30/03/23 05:30 PM End Date",
-        adv_title: "Scheduled Campaign Start and End Date",
-        adv_url: "https://www.jnext.co.in/",
-        created: "2023-03-03T05:44:58.000Z",
-        status: "active",
-        is_approved: 1,
-        timezone: null,
-      },
-      {
-        _id: 35,
-        adv_image: advImg,
-        adv_text:
-          "campaign Immediately, once approved with Continuous until cancelled or Maximum Campaign Spend reached",
-        adv_title: "Immediately Campaign",
-        adv_url: "https://www.google.com",
-        created: "2023-03-03T05:50:37.000Z",
-        status: "active",
-        is_approved: 1,
-        timezone: null,
-      },
-      {
-        _id: 45,
-        adv_image: advImg,
-        adv_text: "create new adv schedule text",
-        adv_title: "create new adv schedule",
-        adv_url: "https://www.google.com",
-        created: "2023-03-08T06:56:38.000Z",
-        status: "active",
-        is_approved: 1,
-        timezone: null,
-      },
-      {
-        _id: 56,
-        adv_image: advImg,
-        adv_text: "Test Timezone text",
-        adv_title: "Test Timezone Title",
-        adv_url: "https://www.google.com",
-        created: "2023-03-10T05:32:57.000Z",
-        status: "active",
-        is_approved: 1,
-        timezone: "(GMT-01:00) Cape Verde Islands",
-      },
       {
         _id: 59,
         adv_image: advImg,
@@ -82,15 +26,59 @@ const Campaigns = () => {
         timezone: "(GMT-12:00) International Date Line West",
       },
       {
+        _id: 20,
+        adv_image: advImg,
+        adv_text: "test status for adv",
+        adv_title: "test status",
+        adv_url: "https://google.com",
+        created: "2023-02-28T06:24:00.000Z",
+        status: "pending",
+        is_approved: 0,
+        timezone: null,
+      },
+      {
+        _id: 21,
+        adv_image: advImg,
+        adv_text: "Approved: Scheduled adv",
+        adv_title: "Approved: Scheduled",
+        adv_url: "https://www.google.com",
+        created: "2023-02-28T06:36:31.000Z",
+        status: "completed",
+        is_approved: 1,
+        timezone: null,
+      },
+      {
+        _id: 56,
+        adv_image: advImg,
+        adv_text: "Test Timezone text",
+        adv_title: "Test Timezone Title",
+        adv_url: "https://www.google.com",
+        created: "2023-03-10T05:32:57.000Z",
+        status: "declined",
+        is_approved: 1,
+        timezone: "(GMT-01:00) Cape Verde Islands",
+      },
+      {
         _id: 60,
         adv_image: advImg,
         adv_text: "13/03/23 adv add scheduled for 14/03/23",
         adv_title: "14/03/23 adv scheduled",
         adv_url: "https://www.google.com",
         created: "2023-03-13T04:29:50.000Z",
-        status: "active",
+        status: "scheduled",
         is_approved: 1,
         timezone: "(GMT-12:00) International Date Line West",
+      },
+      {
+        _id: 25,
+        adv_image: advImg,
+        adv_text: "test status for adv",
+        adv_title: "Test status",
+        adv_url: "https://google.com",
+        created: "2023-02-28T06:24:00.000Z",
+        status: "suspended",
+        is_approved: 1,
+        timezone: null,
       },
     ]);
   }, []);
@@ -104,7 +92,6 @@ const Campaigns = () => {
 
   const handleTabChange = (type) => {
     setIsActive(type);
-    // console.log("type", type);
   };
   const suspendedInfo = `Campaign suspended due to declined payment <a href='/campaign/payment'>Click here to update credit card information.</a>`;
   const filterOption = [
@@ -112,29 +99,39 @@ const Campaigns = () => {
       id: 1,
       name: "Campaigns - Running",
       value: "active",
+      bgColor: "RGB(28 154 108/10%)",
+      color: "#1c9a6c",
     },
     {
       id: 2,
       name: "Campaigns - Scheduled",
       value: "scheduled",
+      bgColor: "RGB(24 203 78/10%)",
+      color: "#18cb4e",
     },
     {
       id: 3,
       name: "Campaigns - Pending",
       value: "pending",
+      bgColor: "RGB(235 208 72/10%)",
+      color: "#ebd048",
     },
     {
       id: 4,
       name: "Campaigns - Completed",
       value: "completed",
+      bgColor: "RGB(102 102 102/10%)",
+      color: "#666666",
     },
     {
       id: 5,
       name: "Campaigns - Declined",
       value: "declined",
+      bgColor: "RGB(255 18 0/10%)",
+      color: "#ff1200",
     },
   ];
-
+  const content = <OtherContent />;
   return (
     <Campaign
       campCreateBtnName="Start a Campaign"
@@ -145,6 +142,8 @@ const Campaigns = () => {
       suspendedInfo={suspendedInfo}
       handleTabChange={handleTabChange}
       isActive={isActive}
+      className="main-content"
+      content={content}
     />
   );
 };

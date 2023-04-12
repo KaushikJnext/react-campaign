@@ -16,7 +16,10 @@ const SelectInput = ({ value, field, disabled, onChange }) => {
       <select
         className={styles.custom_select_field}
         {...rest}
-        value={value[field?.name] || ""}
+        // value={value[field?.name] || ""}
+        value={
+          field?.multiple ? value[field?.name] || [] : value[field?.name] || ""
+        }
         onChange={onChange}
         disabled={disabled}
       >

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "../campaign.scss";
 import TextInput from "../../UI/InputFields/TextInput";
 import TextArea from "../../UI/InputFields/TextArea";
@@ -13,9 +13,12 @@ export const CreateCampaign = ({
   submitCampBtn,
   className,
   handleSubmit,
+  content,
+  editData,
+  campStatus,
 }) => {
-  // console.log("fields", fields);
   const [fieldValue, setFiledValue] = useState({});
+  // const [fieldNameValue, setFiledNameValue] = useState("");
   const [previewMedia, setPreviewMedia] = useState("");
 
   const handleChange = (e) => {
@@ -37,15 +40,22 @@ export const CreateCampaign = ({
         selectedValues.push(options[i].value);
       }
     }
+    // const selectedValues = Array.from(options, (option) => option.value);
+
     setFiledValue({ ...fieldValue, [name]: selectedValues });
   };
-
+  useEffect(() => {
+    setFiledValue(editData);
+  }, [editData]);
+  console.log("editData", editData, "ggg", fieldValue);
   return (
     <React.Fragment>
       {fields && (
         <div className={styles.create_camp_main_container + " " + className}>
           {/* Create React Campaign Library Example 😄 */}
-          <p className={styles.create_camp_title}>{createCampTitle}</p>
+          <p className={styles.create_camp_title}>
+            {editData ? campStatus?.[0]?.name : createCampTitle}
+          </p>
 
           {/* <p className={styles.create_camp_sub_title}>
         Campaign Display and Linking
@@ -59,9 +69,10 @@ export const CreateCampaign = ({
                       {item?.title}
                     </p>
                     {item?.link && (
-                      <a href="#" className={styles.create_camp_sub_title_link}>
-                        {item?.link}
-                      </a>
+                      <p
+                        dangerouslySetInnerHTML={{ __html: item?.link }}
+                        className={styles.create_camp_sub_title_link}
+                      />
                     )}
                   </div>
                   {item?.inputField?.map((field, i) => {
@@ -105,17 +116,20 @@ export const CreateCampaign = ({
                             }
                           />
                         ) : field?.inputType === "image" ? (
-                          <ImageInput
-                            field={field}
-                            onChange={(e) => handleChange(e)}
-                            disabled={
-                              fieldValue[field?.relation] === true
-                                ? true
-                                : field?.disabled
-                            }
-                            previewMedia={previewMedia}
-                            setPreviewMedia={setPreviewMedia}
-                          />
+                          <React.Fragment>
+                            <ImageInput
+                              field={field}
+                              onChange={(e) => handleChange(e)}
+                              disabled={
+                                fieldValue[field?.relation] === true
+                                  ? true
+                                  : field?.disabled
+                              }
+                              fieldValue={fieldValue}
+                              previewMedia={previewMedia}
+                              setPreviewMedia={setPreviewMedia}
+                            />
+                          </React.Fragment>
                         ) : field?.inputType === "radio" ? (
                           <RadioInput
                             field={field}
@@ -163,6 +177,7 @@ export const CreateCampaign = ({
                 </div>
               );
             })}
+            {content && content}
             {submitCampBtn && (
               <button className={styles.camp_submit_btn} type="submit">
                 {submitCampBtn}

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "../campaign.scss";
 
 import { CampSummarys } from "./CampSummarys";
@@ -10,6 +10,7 @@ export const CampSummary = ({
   className,
   viewCampNav,
   handleEndCamp,
+  content,
 }) => {
   return (
     <div className={styles.camp_main_container + " " + className}>
@@ -19,6 +20,7 @@ export const CampSummary = ({
         campStatus={campStatus}
         viewCampNav={viewCampNav}
         handleEndCamp={handleEndCamp}
+        content={content}
       />
     </div>
   );

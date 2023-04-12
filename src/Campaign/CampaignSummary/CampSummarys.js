@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styles from "../campaign.scss";
 import { CampSummaryTable } from "./CampSummaryTable";
+import { Dialog } from "../../UI/DialogBox/Dialog";
 
 export const CampSummarys = ({
   summaryData,
@@ -8,9 +9,18 @@ export const CampSummarys = ({
   campStatus,
   viewCampNav,
   handleEndCamp,
+  content,
 }) => {
-  console.log("summaryData", summaryData);
   const [open, setOpen] = useState(false);
+
+  const handleDialogOpen = () => {
+    setOpen(true);
+  };
+
+  const handleDialogClose = () => {
+    setOpen(false);
+  };
+
   return (
     <React.Fragment>
       {summaryData && (
@@ -26,35 +36,35 @@ export const CampSummarys = ({
               </p>
               <div className={styles.adv_campaign_status}>
                 <p
-                  className={
-                    summaryData?.status === "active"
-                      ? styles.status_active
-                      : summaryData?.status === "scheduled"
-                      ? styles.status_scheduled
-                      : summaryData?.status === "pending"
-                      ? styles.status_pending
-                      : summaryData?.status === "completed"
-                      ? styles.status_completed
-                      : summaryData?.status === "declined"
-                      ? styles.status_declined
-                      : summaryData?.status === "suspended" ||
-                        summaryData?.status === "admin_suspended"
-                      ? styles.status_suspended
-                      : ""
-                  }
+                  className={styles.camp_status}
+                  // className={
+                  //   summaryData?.status === "active"
+                  //     ? styles.status_active
+                  //     : summaryData?.status === "scheduled"
+                  //     ? styles.status_scheduled
+                  //     : summaryData?.status === "pending"
+                  //     ? styles.status_pending
+                  //     : summaryData?.status === "completed"
+                  //     ? styles.status_completed
+                  //     : summaryData?.status === "declined"
+                  //     ? styles.status_declined
+                  //     : summaryData?.status === "suspended" ||
+                  //       summaryData?.status === "admin_suspended"
+                  //     ? styles.status_suspended
+                  //     : ""
+                  // }
+                  style={{
+                    background: campStatus?.[0]?.bgColor,
+                    color: campStatus?.[0]?.color,
+                  }}
                 >
-                  {summaryData?.status === "active"
-                    ? "Active"
-                    : summaryData?.status === "scheduled"
-                    ? "Scheduled"
-                    : summaryData?.status === "admin_suspended"
-                    ? "Suspended"
-                    : summaryData?.status}
+                  {summaryData?.status}
                 </p>
               </div>
             </div>
           </div>
           <CampSummaryTable summaryDataList={summaryDataList} />
+          {content && content}
           <div className={styles.summary_btn_content}>
             <button
               className={styles.btn_blue}
@@ -62,11 +72,40 @@ export const CampSummarys = ({
             >
               View Campaign Detail
             </button>
-            <button className={styles.b_btn_blue} onClick={() => setOpen(true)}>
+            <button
+              className={styles.b_btn_blue}
+              onClick={() => handleDialogOpen(true)}
+            >
               End Campaign
             </button>
           </div>
-          <dialog className={styles.custom_dialog} open={open}>
+          {open && (
+            <Dialog onClose={handleDialogClose}>
+              <div className={styles.dialog_content}>
+                <p className={styles.dialog_content_msg}>
+                  Are you sure to end this campaign?
+                </p>
+                <div className={styles.summary_btn_content}>
+                  <button
+                    className={styles.b_btn_blue}
+                    onClick={() => handleDialogClose(false)}
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    className={styles.btn_blue}
+                    onClick={() => {
+                      handleEndCamp(summaryData);
+                      handleDialogClose(false);
+                    }}
+                  >
+                    Okay
+                  </button>
+                </div>
+              </div>{" "}
+            </Dialog>
+          )}
+          {/* <dialog className={styles.custom_dialog} open={open}>
             <div className={styles.dialog_content}>
               <p className={styles.dialog_content_msg}>
                 Are you sure to end this campaign?
@@ -89,7 +128,7 @@ export const CampSummarys = ({
                 </button>
               </div>
             </div>
-          </dialog>
+          </dialog> */}
         </div>
       )}
     </React.Fragment>

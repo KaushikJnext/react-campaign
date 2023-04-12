@@ -12,6 +12,7 @@ export const Campaign = ({
   handleTabChange,
   isActive,
   className,
+  content,
 }) => {
   // const [isActive, setIsActive] = useState("active");
 
@@ -57,8 +58,11 @@ export const Campaign = ({
           campaignList={campaignList}
           summaryNavigate={summaryNavigate}
           suspendedInfo={suspendedInfo}
+          filterOption={filterOption}
         />
       )}
+
+      {content && content}
     </div>
   );
 };

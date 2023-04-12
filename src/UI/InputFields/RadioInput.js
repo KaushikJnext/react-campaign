@@ -22,10 +22,10 @@ const RadioInput = ({ field, value, disabled, onChange }) => {
               value={item?.value || ""}
               checked={value[field?.name] === item?.value}
               onChange={onChange}
-              id={`gender-${i}`}
+              id={`radio-${i}`}
               disabled={disabled}
             />
-            <label htmlFor={`gender-${i}`}>{item?.label}</label>
+            <label htmlFor={`radio-${i}`}>{item?.label}</label>
           </div>
         );
       })}
