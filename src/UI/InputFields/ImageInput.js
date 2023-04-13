@@ -8,8 +8,9 @@ const ImageInput = ({
   fieldValue,
   previewMedia,
   setPreviewMedia,
+  setFieldValue,
 }) => {
-  const { inputType, label, relation, ...rest } = field;
+  const { inputType, label, relation, isEditable, ...rest } = field;
 
   // URL.createObjectURL(previewMedia[0])
   const [preview, setPreview] = useState("");
@@ -19,13 +20,23 @@ const ImageInput = ({
         ? URL.createObjectURL(previewMedia[0])
         : fieldValue[field?.name]
         ? fieldValue[field?.name]
+        : preview
+        ? preview
         : ""
     );
+    let name = fieldValue[field?.name];
+    if (name && preview === "") {
+      setFieldValue({ ...fieldValue, name: "" });
+    }
   }, [fieldValue]);
+
+  // useEffect(()=>{},[])
 
   const deletePreviewMedia = () => {
     setPreviewMedia("");
     setPreview("");
+    let name = field?.name;
+    setFieldValue({ ...fieldValue, [name]: "" });
   };
   return (
     <React.Fragment>
@@ -39,9 +50,10 @@ const ImageInput = ({
         <div className={styles.camp_prev_media_content}>
           <div
             className={styles.camp_prev_media_delete}
-            onClick={deletePreviewMedia}
+            onClick={() => deletePreviewMedia(field?.name)}
           >
             &#9747;
+            {/* &#x2715; */}
           </div>
           <div className={styles.camp_prev_media}>
             <img src={preview} alt="not found" />

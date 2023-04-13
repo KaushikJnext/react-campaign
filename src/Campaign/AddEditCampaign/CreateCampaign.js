@@ -6,6 +6,7 @@ import SelectInput from "../../UI/InputFields/SelectInput";
 import ImageInput from "../../UI/InputFields/ImageInput";
 import RadioInput from "../../UI/InputFields/RadioInput";
 import CheckBoxInput from "../../UI/InputFields/CheckBoxInput";
+import InputForm from "../InputForm";
 
 export const CreateCampaign = ({
   createCampTitle,
@@ -17,7 +18,7 @@ export const CreateCampaign = ({
   editData,
   campStatus,
 }) => {
-  const [fieldValue, setFiledValue] = useState({});
+  const [fieldValue, setFieldValue] = useState({});
   // const [fieldNameValue, setFiledNameValue] = useState("");
   const [previewMedia, setPreviewMedia] = useState("");
 
@@ -25,7 +26,7 @@ export const CreateCampaign = ({
     const { name, value, type, checked, files } = e.target;
     let values =
       type === "checkbox" ? checked : type === "file" ? files[0] : value;
-    setFiledValue({ ...fieldValue, [name]: values });
+    setFieldValue({ ...fieldValue, [name]: values });
     if (type === "file") {
       setPreviewMedia(files);
     }
@@ -42,12 +43,12 @@ export const CreateCampaign = ({
     }
     // const selectedValues = Array.from(options, (option) => option.value);
 
-    setFiledValue({ ...fieldValue, [name]: selectedValues });
+    setFieldValue({ ...fieldValue, [name]: selectedValues });
   };
   useEffect(() => {
-    setFiledValue(editData);
+    setFieldValue(editData);
   }, [editData]);
-  console.log("editData", editData, "ggg", fieldValue);
+  // console.log("editData", editData, "ggg", fieldValue);
   return (
     <React.Fragment>
       {fields && (
@@ -75,7 +76,12 @@ export const CreateCampaign = ({
                       />
                     )}
                   </div>
-                  {item?.inputField?.map((field, i) => {
+                  <InputForm
+                    fields={item?.inputField}
+                    fieldValue={fieldValue}
+                    setFieldValue={setFieldValue}
+                  />
+                  {/* {item?.inputField?.map((field, i) => {
                     return (
                       <div key={i} className={styles.camp_input_field}>
                         {field?.inputType === "input" ? (
@@ -172,7 +178,7 @@ export const CreateCampaign = ({
                         )}
                       </div>
                     );
-                  })}
+                  })} */}
                   <hr className={styles.camp_create_divider} />
                 </div>
               );

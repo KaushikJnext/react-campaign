@@ -20,7 +20,7 @@ export const CampSummarys = ({
   const handleDialogClose = () => {
     setOpen(false);
   };
-
+  console.log("campStatus", campStatus);
   return (
     <React.Fragment>
       {summaryData && (
@@ -74,7 +74,7 @@ export const CampSummarys = ({
             </button>
             <button
               className={styles.b_btn_blue}
-              onClick={() => handleDialogOpen(true)}
+              onClick={() => handleDialogOpen()}
             >
               End Campaign
             </button>
@@ -88,7 +88,7 @@ export const CampSummarys = ({
                 <div className={styles.summary_btn_content}>
                   <button
                     className={styles.b_btn_blue}
-                    onClick={() => handleDialogClose(false)}
+                    onClick={() => handleDialogClose()}
                   >
                     Cancel
                   </button>
@@ -96,7 +96,7 @@ export const CampSummarys = ({
                     className={styles.btn_blue}
                     onClick={() => {
                       handleEndCamp(summaryData);
-                      handleDialogClose(false);
+                      handleDialogClose();
                     }}
                   >
                     Okay
@@ -105,30 +105,6 @@ export const CampSummarys = ({
               </div>{" "}
             </Dialog>
           )}
-          {/* <dialog className={styles.custom_dialog} open={open}>
-            <div className={styles.dialog_content}>
-              <p className={styles.dialog_content_msg}>
-                Are you sure to end this campaign?
-              </p>
-              <div className={styles.summary_btn_content}>
-                <button
-                  className={styles.b_btn_blue}
-                  onClick={() => setOpen(false)}
-                >
-                  Cancel
-                </button>
-                <button
-                  className={styles.btn_blue}
-                  onClick={() => {
-                    handleEndCamp(summaryData);
-                    setOpen(false);
-                  }}
-                >
-                  Okay
-                </button>
-              </div>
-            </div>
-          </dialog> */}
         </div>
       )}
     </React.Fragment>

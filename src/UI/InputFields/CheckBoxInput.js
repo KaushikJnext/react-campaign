@@ -2,7 +2,15 @@ import React from "react";
 import styles from "./input.scss";
 
 const CheckBoxInput = ({ field, value, disabled, onChange }) => {
-  const { inputType, label, options, or, relation, ...rest } = field;
+  const {
+    inputType,
+    label,
+    options,
+    or,
+    relation,
+    isEditable,
+    ...rest
+  } = field;
   // console.log("radioInput", field);
 
   return (

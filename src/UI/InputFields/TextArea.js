@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./input.scss";
 
 const TextArea = ({ value, field, disabled, onChange }) => {
-  const { inputType, label, relation, ...rest } = field;
+  const { inputType, label, relation, isEditable, ...rest } = field;
   // console.log("textAreaInput", field);
 
   return (

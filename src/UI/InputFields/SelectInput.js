@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./input.scss";
 
 const SelectInput = ({ value, field, disabled, onChange }) => {
-  const { inputType, label, options, relation, ...rest } = field;
+  const { inputType, label, options, relation, isEditable, ...rest } = field;
   // console.log("selectInput", field);
 
   return (

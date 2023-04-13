@@ -22,6 +22,7 @@ import 'react-campaign/dist/index.css'
 class Example extends Component {
   render() {
     return <Campaign 
+      className=''
       campCreateBtnName="Start a Campaign"
       handleCreateCamp={handleCreateCamp}
       filterOption={filterOption}
@@ -30,6 +31,7 @@ class Example extends Component {
       suspendedInfo={suspendedInfo}
       handleTabChange={handleTabChange}
       isActive={isActive}
+      content={content}
     />
   }
 }
@@ -43,6 +45,7 @@ class Example extends Component {
 * suspendedInfo: suspended Info text
 * handleTabChange: tab value change
 * isActive: active tabe value
+* content: add your other content
 > array/object required key
 ```
 const filterOption = [
@@ -50,7 +53,10 @@ const filterOption = [
       id: 1,
       name: "Campaigns - Running",
       value: "active",
+      bgColor: "RGB(28 154 108/10%)",
+      color: "#1c9a6c",
     },
+    ....
 ]
 
 const campaignList =[
@@ -64,7 +70,9 @@ const campaignList =[
       status: "suspended",
       is_approved: 1,
       timezone: null,
+      ....
     },
+    ....
 ]
 ```
 
@@ -78,18 +86,20 @@ import 'react-campaign/dist/index.css'
 class Example extends Component {
   render() {
     return <CreateCampaign
+      className=""
       createCampTitle="Start a Campaign"
       submitCampBtn="Submit Campaign"
       fields={fields}
-      className="custom-field"
+      content={content}
     />
   }
 }
 ```
-> Campaign Props
+> Create Campaign Props
 * createCampTitle= campaign title
 * submitCampBtn= campaign submit button name
 * fields={fields}
+* content: add your other content
 
 > array/object required key
 ```
@@ -130,11 +140,106 @@ const fields = [
           inputType: "policy_content",
           content: <Policy />,
         },
+        ....
       ]
-    }
+    },
+    ....
   ]
 ```
 > inputType: input, textarea, image, select, radio, checkbox, static_content(for static info), policy_content 
+
+Campaign Summary
+```jsx
+import React, { Component } from 'react'
+
+import { CampSummary } from "react-campaign";
+import 'react-campaign/dist/index.css'
+
+class Example extends Component {
+  render() {
+    return <CampSummary
+      summaryData={summaryData}
+      summaryDataList={summaryDataList}
+      campStatus={campStatus}
+      viewCampNav={viewCampNav}
+      handleEndCamp={handleEndCamp}
+      content={content}
+    />
+  }
+}
+```
+> Campaign Payment Props
+* summaryData= summary data object
+* summaryDataList= show table data
+* campStatus = campaign status 
+* viewCampNav = navigate your own path
+* handleEndCamp = end campaign 
+* content: add your other content
+```
+  let summaryDataList = [
+    { name: "Date/Time Ended", value: "Continuous" },
+    { name: "Maximum Bid", value: "$1" },
+   ....
+  ];
+
+  let campStatus =  {
+    "id": 1,
+    "name": "Current Campaign - Summary",
+    "value": "active",
+    "bgColor": "RGB(28 154 108/10%)",
+    "color": "#1c9a6c"
+}
+```
+
+Campaign Payment
+```jsx
+import React, { Component } from 'react'
+
+import { PaymentMethod } from "react-campaign";
+import 'react-campaign/dist/index.css'
+
+class Example extends Component {
+  render() {
+    return <PaymentMethod
+      className=""
+      campPaymentTitle="Payment Methods"
+      addBtn="Add a new card"
+      cardList={cardList}
+      fields={fields}
+      handleSubmit={handleSubmit}
+      handleDeleteCard={handleDeleteCard}
+      content={content}
+    />
+  }
+}
+```
+> Campaign Payment Props
+* campPaymentTitle= campaign Payment title
+* addBtn= add card button name
+* cardList = added your card list
+* handleSubmit = submit card details
+* handleDeleteCard = delete card details
+* content: add your other content
+
+```
+  let cardList = [
+     {
+      _id: 39,
+      card_name: "Test card declined",
+      card_no: "4000 **** **** 0341",
+      card_type: "visa",
+      cvv: "133",
+      default: 1,
+      exp_date: "2025-05",
+      make_default: true,
+      ....
+    },
+   ....
+  ];
+
+
+```
+
 ## License
 
 MIT © [KaushikJnext](https://github.com/KaushikJnext)
