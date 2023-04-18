@@ -32,6 +32,7 @@ class Example extends Component {
       handleTabChange={handleTabChange}
       isActive={isActive}
       content={content}
+      langData={langData}
     />
   }
 }
@@ -46,6 +47,29 @@ class Example extends Component {
 * handleTabChange: tab value change
 * isActive: active tabe value
 * content: add your other content
+* langData: add your language data
+
+>Language file look like
+```
+{
+  "rc": {
+    "VIEW": "View",
+    "NO_CAMPAIGN": "No Campaign",
+    "CAMPAIGN_STATUS": "Campaign Status",
+    "VIEW_CAMP_DETAIL": "View Campaign Detail",
+    "END_CAMP": "End Campaign",
+    "ARE_YOU_SURE_END_CAMAPIGN": "Are you sure to end this campaign?",
+    "CANCEL": "Cancel",
+    "OKAY": "Okay",
+    "EXPIRY": "Expiry",
+    "DEFAULT_CARD": "Default Card",
+    "ADD_CARD": "Add Card",
+    "EDIT_CARD": "Edit Card",
+    "DELETE_CARD": "Delete Card",
+    "ARE_YOU_SURE_DELETE_CARD": "Are you sure to delete this card?"
+  }
+}
+```
 > array/object required key
 ```
 const filterOption = [
@@ -91,6 +115,7 @@ class Example extends Component {
       submitCampBtn="Submit Campaign"
       fields={fields}
       content={content}
+      langData={langData}
     />
   }
 }
@@ -164,6 +189,7 @@ class Example extends Component {
       viewCampNav={viewCampNav}
       handleEndCamp={handleEndCamp}
       content={content}
+      langData={langData}
     />
   }
 }
@@ -209,6 +235,7 @@ class Example extends Component {
       handleSubmit={handleSubmit}
       handleDeleteCard={handleDeleteCard}
       content={content}
+      langData={langData}
     />
   }
 }

@@ -12,6 +12,7 @@ export const PaymentMethod = ({
   fields,
   handleSubmit,
   handleDeleteCard,
+  langData,
 }) => {
   const [open, setOpen] = useState(false);
   const [fieldValue, setFieldValue] = useState({});
@@ -82,10 +83,15 @@ export const PaymentMethod = ({
                     </p>
                   </div>
                   <p className={styles.adv_card_exp_date}>
-                    Expiry: {item?.exp_date}
+                    {langData?.rc?.EXPIRY ? langData?.rc?.EXPIRY : "Expiry"}:{" "}
+                    {item?.exp_date}
                   </p>
                   {item?.make_default && (
-                    <p className={styles.adv_card_default}>Default Card</p>
+                    <p className={styles.adv_card_default}>
+                      {langData?.rc?.DEFAULT_CARD
+                        ? langData?.rc?.DEFAULT_CARD
+                        : "Default Card"}
+                    </p>
                   )}
                 </div>
               );
@@ -98,7 +104,17 @@ export const PaymentMethod = ({
           <div className={styles.add_card_container}>
             <div className={styles.add_card_dialog_title}>
               <p className={styles.add_card_title_text}>
-                {isDelete ? "Delete Card" : isEdit ? "Edit Card" : "Add Card"}
+                {isDelete
+                  ? langData?.rc?.DELETE_CARD
+                    ? langData?.rc?.DELETE_CARD
+                    : "Delete Card"
+                  : isEdit
+                  ? langData?.rc?.EDIT_CARD
+                    ? langData?.rc?.EDIT_CARD
+                    : "Edit Card"
+                  : langData?.rc?.ADD_CARD
+                  ? langData?.rc?.ADD_CARD
+                  : "Add Card"}
               </p>
               <span
                 className={styles.add_card_dialog_close}
@@ -125,21 +141,29 @@ export const PaymentMethod = ({
                     className={styles.camp_submit_btn}
                     type="submit"
                   >
-                    {isEdit ? "Edit Card" : "Add Card"}
+                    {isEdit
+                      ? langData?.rc?.EDIT_CARD
+                        ? langData?.rc?.EDIT_CARD
+                        : "Edit Card"
+                      : langData?.rc?.ADD_CARD
+                      ? langData?.rc?.ADD_CARD
+                      : "Add Card"}
                   </button>
                 </div>
               </form>
             ) : (
               <div className={styles.dialog_content}>
                 <p className={styles.dialog_content_msg}>
-                  Are you sure to delete this card?
+                  {langData?.rc?.ARE_YOU_SURE_DELETE_CARD
+                    ? langData?.rc?.ARE_YOU_SURE_DELETE_CARD
+                    : "Are you sure to delete this card?"}
                 </p>
                 <div className={styles.summary_btn_content}>
                   <button
                     className={styles.b_btn_blue}
                     onClick={() => handleDialogClose()}
                   >
-                    Cancel
+                    {langData?.rc?.CANCEL ? langData?.rc?.CANCEL : "Cancel"}
                   </button>
                   <button
                     className={styles.btn_blue}
@@ -148,7 +172,7 @@ export const PaymentMethod = ({
                       handleDialogClose();
                     }}
                   >
-                    Okay
+                    {langData?.rc?.OKAY ? langData?.rc?.OKAY : "Okay"}
                   </button>
                 </div>
               </div>

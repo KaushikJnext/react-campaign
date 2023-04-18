@@ -8,6 +8,7 @@ const CampaignList = ({
   summaryNavigate,
   suspendedInfo,
   filterOption,
+  langData,
 }) => {
   // const [currentPage, setCurrentPage] = useState(1);
   // const [itemsPerPage, setItemsPerPage] = useState(2);
@@ -83,7 +84,9 @@ const CampaignList = ({
                     onClick={() => summaryNavigate(item)}
                   >
                     {/* <ViewIcon /> */}
-                    <span className={styles.color_blue}>view</span>
+                    <span className={styles.color_blue}>
+                      {langData?.rc?.VIEW ? langData?.rc?.VIEW : "View"}
+                    </span>
                   </p>
                 </div>
               </div>
@@ -112,7 +115,11 @@ const CampaignList = ({
       } */}
       {campaignList?.length === 0 && (
         <div className={styles.not_found}>
-          <p>No Campaign</p>
+          <p>
+            {langData?.rc?.NO_CAMPAIGN
+              ? langData?.rc?.NO_CAMPAIGN
+              : "No Campaign"}
+          </p>
         </div>
       )}
     </div>

@@ -11,6 +11,7 @@ export const CampSummary = ({
   viewCampNav,
   handleEndCamp,
   content,
+  langData,
 }) => {
   return (
     <div className={styles.camp_main_container + " " + className}>
@@ -21,6 +22,7 @@ export const CampSummary = ({
         viewCampNav={viewCampNav}
         handleEndCamp={handleEndCamp}
         content={content}
+        langData={langData}
       />
     </div>
   );

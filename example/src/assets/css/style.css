@@ -1,0 +1,12 @@
+.lang-change-content {
+    position: fixed;
+    right: 2%;
+    bottom: 0;
+    background: #ffffff;
+    padding: 5px;
+    box-shadow: 0px 0px 10px 5px #ffffff;
+}
+
+.lang-change-input {
+    padding: 5px;
+}

@@ -1,13 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import OtherContent from "./OtherContent";
 import moment from "moment";
 import { useNavigate } from "react-router-dom";
 
+import { IntlContext } from "../../src/App";
+
 import { PaymentMethod } from "react-campaign";
 import "react-campaign/dist/index.css";
 
 const CampaignPayment = () => {
+  const intlContext = useContext(IntlContext);
+  const langData = intlContext?.messages;
   const navigate = useNavigate();
   const cardList = [
     {
@@ -168,6 +172,7 @@ const CampaignPayment = () => {
       fields={fields}
       handleSubmit={handleSubmit}
       handleDeleteCard={handleDeleteCard}
+      langData={langData}
     />
   );
 };

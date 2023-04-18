@@ -1,13 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 
 import advImg from "../../src/assets/images/demo.jpg";
 import { useNavigate } from "react-router-dom";
 import OtherContent from "./OtherContent";
 
+import { IntlContext } from "../../src/App";
+
 import { Campaign } from "react-campaign";
 import "react-campaign/dist/index.css";
 
 const Campaigns = () => {
+  const intlContext = useContext(IntlContext);
+  const langData = intlContext?.messages;
   const [campaignList, setCampaignList] = useState([]);
   const [isActive, setIsActive] = useState("active");
   const navigate = useNavigate();
@@ -144,6 +148,7 @@ const Campaigns = () => {
       isActive={isActive}
       className="main-content"
       content={content}
+      langData={langData}
     />
   );
 };

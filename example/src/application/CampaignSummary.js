@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import advImg from "../../src/assets/images/demo.jpg";
 import { useNavigate, useParams } from "react-router-dom";
 import OtherContent from "./OtherContent";
+
+import { IntlContext } from "../../src/App";
 
 import { CampSummary } from "react-campaign";
 import "react-campaign/dist/index.css";
 
 const CampaignSummary = () => {
+  const intlContext = useContext(IntlContext);
+  const langData = intlContext?.messages;
   const navigate = useNavigate();
   const { id } = useParams();
 
@@ -163,6 +167,7 @@ const CampaignSummary = () => {
         viewCampNav={viewCampNav}
         handleEndCamp={handleEndCamp}
         content={content}
+        langData={langData}
       />
     </div>
   );

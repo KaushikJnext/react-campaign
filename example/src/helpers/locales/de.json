@@ -1,0 +1,18 @@
+{
+  "rc": {
+    "VIEW": "Sicht",
+    "NO_CAMPAIGN": "Keine Kampagne",
+    "CAMPAIGN_STATUS": "Kampagnenstatus",
+    "VIEW_CAMP_DETAIL": "Kampagnendetails anzeigen",
+    "END_CAMP": "Kampagne beenden",
+    "ARE_YOU_SURE_END_CAMAPIGN": "Möchten Sie diese Kampagne wirklich beenden?",
+    "CANCEL": "Stornieren",
+    "OKAY": "Okay",
+    "EXPIRY": "Ablauf",
+    "DEFAULT_CARD": "Standardkarte",
+    "ADD_CARD": "Karte hinzufügen",
+    "EDIT_CARD": "Karte bearbeiten",
+    "DELETE_CARD": "Karte löschen",
+    "ARE_YOU_SURE_DELETE_CARD": "Möchten Sie diese Karte wirklich löschen?"
+  }
+}

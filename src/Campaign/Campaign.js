@@ -13,6 +13,7 @@ export const Campaign = ({
   isActive,
   className,
   content,
+  langData,
 }) => {
   // const [isActive, setIsActive] = useState("active");
 
@@ -59,6 +60,7 @@ export const Campaign = ({
           summaryNavigate={summaryNavigate}
           suspendedInfo={suspendedInfo}
           filterOption={filterOption}
+          langData={langData}
         />
       )}
 
